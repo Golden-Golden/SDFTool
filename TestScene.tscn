@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://e11mtxn6aeg1"]
+
+[ext_resource type="Shader" uid="uid://c8cjref1tp0m0" path="res://rayMarch.gdshader" id="1_mncer"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cguwc"]
+render_priority = 0
+shader = ExtResource("1_mncer")
+shader_parameter/MAX_STEPS = 100
+shader_parameter/MAX_DIST = 100.0
+shader_parameter/SURF_DIST = 0.001
+shader_parameter/color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wicfy"]
+material = SubResource("ShaderMaterial_cguwc")
+flip_faces = true
+size = Vector3(5, 5, 5)
+
+[node name="Node3D" type="Node3D" unique_id=272140006]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=232669261]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013293266, 0.014662743, -0.0035414696)
+mesh = SubResource("BoxMesh_wicfy")
