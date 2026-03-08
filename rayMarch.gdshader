@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode depth_test_disabled;
+render_mode unshaded, depth_test_disabled;
 
 #include "res://sdfShapes.gdshaderinc"
 #include "res://sdfOperations.gdshaderinc"
@@ -10,17 +10,25 @@ uniform float MAX_DIST = 100.0;
 uniform float SURF_DIST = 0.01;
 uniform vec3 color : source_color;
 
+group_uniforms Shapes;
+uniform vec3 positions[100];
+uniform vec3 scales[100];
+
+
 float GetDist(vec3 p){
-	float dist = 1.0;
-	float sphere = sdSphere(p-vec3(0,0,1), 0.5);
-	float box = sdRoundBox(p, vec3(1,1,1), 0);
-	dist = opSmoothUnion(sphere, box,0.02);
+	float dist = 1000.0;
+	for(int i = 0; i < 100; i++){
+		if(scales[i].x != 0.0){
+			float sphere = sdSphere(p-positions[i],scales[i].x);
+			dist = opSmoothUnion(sphere, dist,0.2);
+		}
+	}
 	return dist;
 }
 
 vec3 GetNormal(vec3 p){
 	float d = GetDist(p);
-	vec2 e = vec2(0.01,0.0);
+	vec2 e = vec2(0.0001,0.0);
 	vec3 n = d - vec3(
 		GetDist(p-e.xyy),
 		GetDist(p-e.yxy),
@@ -48,6 +56,9 @@ void fragment() {
 	ALPHA = step(d, MAX_DIST);
 	
 	vec3 n = GetNormal(ro + rd*d);
-    NORMAL = n;
-	ALBEDO = color;
+    
+	float shading = clamp(dot(n, vec3(1,1,0)),0,1);
+	float shading2 = clamp(dot(n, vec3(0,1,-1)),0,1);	
+	
+	ALBEDO = color * (max(shading,shading2*0.1)+0.02);
 }

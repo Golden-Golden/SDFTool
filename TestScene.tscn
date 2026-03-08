@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://e11mtxn6aeg1"]
 
 [ext_resource type="Shader" uid="uid://c8cjref1tp0m0" path="res://rayMarch.gdshader" id="1_mncer"]
+[ext_resource type="Script" uid="uid://dpphdsrh0frc8" path="res://cameraControl.gd" id="2_cguwc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cguwc"]
 render_priority = 0
@@ -9,14 +10,29 @@ shader_parameter/MAX_STEPS = 100
 shader_parameter/MAX_DIST = 100.0
 shader_parameter/SURF_DIST = 0.001
 shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/positions = PackedVector3Array(0, 0, 1.66, 0, 0.995, 0, 0, 0, 0, 0, 0.365, 0.815, 0, 0.075, 0.845, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/scales = PackedVector3Array(0.745, 0.08, 0, 0.35, 0, 0, 0.54, 0, 0, 0.18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_wicfy"]
 material = SubResource("ShaderMaterial_cguwc")
 flip_faces = true
 size = Vector3(5, 5, 5)
 
+[sub_resource type="Environment" id="Environment_mncer"]
+background_mode = 1
+
 [node name="Node3D" type="Node3D" unique_id=272140006]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=232669261]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013293266, 0.014662743, -0.0035414696)
 mesh = SubResource("BoxMesh_wicfy")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1681806223]
+transform = Transform3D(0.36812454, 0.31800228, -0.8737041, 0, 0.9396926, 0.34202012, 0.9297765, -0.125906, 0.34592393, 0, 0, 0)
+script = ExtResource("2_cguwc")
+
+[node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=270641863]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.935)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1448119521]
+environment = SubResource("Environment_mncer")
