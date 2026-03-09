@@ -2,6 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://c8cjref1tp0m0" path="res://rayMarch.gdshader" id="1_mncer"]
 [ext_resource type="Script" uid="uid://dpphdsrh0frc8" path="res://cameraControl.gd" id="2_cguwc"]
+[ext_resource type="Shader" uid="uid://ccxf7snsq4v25" path="res://SidePanel.gdshader" id="3_wicfy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cguwc"]
 render_priority = 0
@@ -21,18 +22,74 @@ size = Vector3(5, 5, 5)
 [sub_resource type="Environment" id="Environment_mncer"]
 background_mode = 1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_go42g"]
+shader = ExtResource("3_wicfy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sreuk"]
+shader = ExtResource("3_wicfy")
+
 [node name="Node3D" type="Node3D" unique_id=272140006]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=232669261]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013293266, 0.014662743, -0.0035414696)
 mesh = SubResource("BoxMesh_wicfy")
 
-[node name="Node3D" type="Node3D" parent="." unique_id=1681806223]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1448119521]
+environment = SubResource("Environment_mncer")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=19736840]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1458463943]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control" unique_id=1295565179]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Control/HBoxContainer" unique_id=1706895923]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Control/HBoxContainer/SubViewportContainer" unique_id=825354962]
+size = Vector2i(1620, 1080)
+
+[node name="Node3D" type="Node3D" parent="CanvasLayer/Control/HBoxContainer/SubViewportContainer/SubViewport" unique_id=1681806223]
 transform = Transform3D(0.36812454, 0.31800228, -0.8737041, 0, 0.9396926, 0.34202012, 0.9297765, -0.125906, 0.34592393, 0, 0, 0)
 script = ExtResource("2_cguwc")
 
-[node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=270641863]
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/Control/HBoxContainer/SubViewportContainer/SubViewport/Node3D" unique_id=270641863]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.935)
+fov = 77.27456
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1448119521]
-environment = SubResource("Environment_mncer")
+[node name="Panel" type="Panel" parent="CanvasLayer/Control/HBoxContainer" unique_id=1986388068]
+material = SubResource("ShaderMaterial_go42g")
+use_parent_material = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer/Panel" unique_id=41621991]
+material = SubResource("ShaderMaterial_sreuk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/HBoxContainer/Panel/VBoxContainer" unique_id=541729431]
+layout_mode = 2
+text = "TEST"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control/HBoxContainer/Panel/VBoxContainer" unique_id=69279876]
+layout_mode = 2
+text = "TEST"

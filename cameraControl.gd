@@ -3,7 +3,7 @@ extends Node3D
 @export var sensitivity: float = 0.6 
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	pass
 
 func _input(event):
 	# Quit check (usually mapped to "ui_cancel" or "escape")
